@@ -1,13 +1,17 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "./App.css";
+import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
-import { ActivismProfile } from "./Tracker/ActivismProfile";
+import ActivismPortal from "./Tracker";
+import LegislationPortal from "./Legislation";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      bills: []
+      bills: [],
+      legislation: []
     };
   }
   componentDidMount() {
@@ -25,7 +29,21 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <ActivismProfile data={this.state.bills} />
+        <Header />
+        <Router>
+          <div>
+            <Route
+              path="/tracker"
+              component={() => <ActivismPortal data={this.state.bills} />}
+            />
+            <Route
+              path="/legislation"
+              component={() => (
+                <LegislationPortal data={this.state.legislation} />
+              )}
+            />
+          </div>
+        </Router>
         <Footer />
       </div>
     );
