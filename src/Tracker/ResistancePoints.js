@@ -6,8 +6,6 @@ export class ResistancePoints extends React.Component {
     this.resistanceTally = this.resistanceTally.bind(this);
   }
 
-
-
   resistanceTally(bill){
     var tally = 0;
     for(var i =0; i<bill.length; i++){

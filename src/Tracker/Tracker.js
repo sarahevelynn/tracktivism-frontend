@@ -54,15 +54,14 @@ export class Tracker extends React.Component {
   render() {
     return (
       <div id="activism-table">
-        <h3>Legislation Engaged With</h3>
         <table id="tracking">
           <tbody>
             <tr>
-              <th>State Bill ID</th>
+              <th>Bill ID</th>
               <th>Position</th>
-              <th>Made Call</th>
-              <th>Went to Event</th>
-              <th>Engaged Online</th>
+              <th>Call</th>
+              <th>Event</th>
+              <th>Online</th>
               <th>Sent On</th>
               <th>Other</th>
               <th>Notes</th>
