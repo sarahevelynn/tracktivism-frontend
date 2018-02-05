@@ -11,7 +11,7 @@ export class AddAction extends React.Component {
   generateBills(bill) {
     return (
       <option key={bill.id} id={bill.id}>
-        {bill.StateCode} {bill.StateBillID}
+        {bill.StateBillID}
       </option>
     );
   }
@@ -96,9 +96,10 @@ export class AddAction extends React.Component {
           <label htmlFor="Notes">Special Notes on Legislation</label>
           <input type="text" name="Notes" />
           <label htmlFor="NumberOfActions">Number of Actions on th:</label>
-          <div name="NumberOfActions">
-            <div>{this.state.count}</div>
+          <div>
+            <input type="number" name="NumberOfActions" value={this.state.count}></input>
           </div>
+
           <input type="submit" id="add-action-button" value="Submit Action" />
         </form>
       </div>

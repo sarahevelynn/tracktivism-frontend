@@ -15,7 +15,6 @@ export class Tracker extends React.Component {
   }
 
   positionIcon(response) {
-    console.log(response);
     if (response === "Support") {
       return <img id="response-icon" src={thumbsUp} alt="Support" className="position-icon" />;
     } else if (response === "Neutral") {
