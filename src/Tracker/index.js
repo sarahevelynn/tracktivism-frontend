@@ -2,7 +2,8 @@ import React from "react";
 import { Tracker } from "./Tracker";
 import { ResistancePoints } from "./ResistancePoints";
 import { AddAction } from "./AddAction";
-import { Delete } from "./Delete";
+import { Update } from "./UpdateAction";
+import { Delete } from "./DeleteAction";
 
 export default class ActivismProfile extends React.Component {
   render() {
@@ -10,8 +11,9 @@ export default class ActivismProfile extends React.Component {
       <main>
         <ResistancePoints data={this.props.bills}/>
         <Tracker data={this.props.bills} />
-        <AddAction data={this.props.legislation} add={this.props.add} />
-        <Delete data={this.props.tracking} takeOff={this.props.takeOff} />
+        <AddAction data={this.props.legislation} addActions={this.props.addActions} />
+        <Update data={this.props.bills} updateAction={this.props.updateAction} />
+        <Delete data={this.props.bills} deleteAction={this.props.deleteAction} />
       </main>
     );
   }

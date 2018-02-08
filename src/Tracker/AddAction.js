@@ -11,8 +11,16 @@ export class AddAction extends React.Component {
   generateBills(bill) {
     return (
       <option key={bill.id} id={bill.id}>
-        {bill.StateBillID}
+        {bill.StateCode} {bill.StateBillID}
       </option>
+    );
+  }
+
+  generateLegislationID(bill) {
+    return (
+      <div key={bill.id} id={bill.id}>
+        {bill.id}
+      </div>
     );
   }
 
@@ -20,11 +28,11 @@ export class AddAction extends React.Component {
     var count = this.state.count;
     if (event.target.value === "true") {
       this.setState({ count: count + 1 });
-    // } else if (event.target.value === "false") {
-    //   if (this.state.count === 0) {
-    //     return;
-    //   }
-    //   this.setState({ count: count - 1 });
+      // } else if (event.target.value === "false") {
+      //   if (this.state.count === 0) {
+      //     return;
+      //   }
+      //   this.setState({ count: count - 1 });
     }
   }
 
@@ -36,7 +44,7 @@ export class AddAction extends React.Component {
     return (
       <div id="add-action">
         <h2>Add Some Action </h2>
-        <form id="new-action" onSubmit={this.props.add}>
+        <form id="new-action" onSubmit={this.props.addActions}>
           <label htmlFor="StateBillID">Find your bill:</label>
           <select name="StateBillID" id="StateBillID">
             <option value="" disabled selected>
@@ -95,11 +103,16 @@ export class AddAction extends React.Component {
           </select>
           <label htmlFor="Notes">Special Notes on Legislation</label>
           <input type="text" name="Notes" />
-          <label htmlFor="NumberOfActions">Number of Actions on th:</label>
+          <label htmlFor="NumberOfActions">
+            Number of Actions on the bill:
+          </label>
           <div>
-            <input type="number" name="NumberOfActions" value={this.state.count}></input>
+            <input
+              type="number"
+              name="NumberOfActions"
+              value={this.state.count}
+            />
           </div>
-
           <input type="submit" id="add-action-button" value="Submit Action" />
         </form>
       </div>

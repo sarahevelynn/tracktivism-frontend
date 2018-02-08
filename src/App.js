@@ -18,8 +18,14 @@ class App extends Component {
     this.stringToBoolean = this.stringToBoolean.bind(this);
     this.getNewAction = this.getNewAction.bind(this);
     this.addActions = this.addActions.bind(this);
+    this.findBillById = this.findBillById.bind(this);
+    this.updateAction = this.updateAction.bind(this);
     this.deleteAction = this.deleteAction.bind(this);
-    this.getDeletedAction = this.getDeletedAction.bind(this);
+    this.getNewLegislation = this.getNewLegislation.bind(this);
+    this.addLegislation = this.addLegislation.bind(this);
+    this.updateLegislation = this.updateLegislation.bind(this);
+    this.deleteLegislation = this.deleteLegislation.bind(this);
+    this.deleteBoth = this.deleteBoth.bind(this);
   }
   componentDidMount() {
     fetch(baseURL)
@@ -43,9 +49,9 @@ class App extends Component {
 
   getNewAction(event) {
     event.preventDefault();
-    console.log(event);
     var data = new FormData(event.target);
-    var dataTwo ={
+    console.log(data.get);
+    return {
       StateBillID: data.get("StateBillID"),
       Position: data.get("Position"),
       Call: this.stringToBoolean(data.get("Call")),
@@ -54,8 +60,9 @@ class App extends Component {
       SentOn: this.stringToBoolean(data.get("SentOn")),
       Other: this.stringToBoolean(data.get("Other")),
       Notes: data.get("Notes"),
-      NumberOfActions: parseInt(data.get("NumberOfActions"))}
-      return dataTwo;
+      NumberOfActions: parseInt(data.get("NumberOfActions")),
+      LegislationID: parseInt(data.get("StateBillID"))
+    };
   }
 
   addActions(event) {
@@ -71,31 +78,194 @@ class App extends Component {
       .then(response => {
         this.componentDidMount();
       })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+
+  findBillById(id){
+    return this.state.bills.find(bill => {
+      return bill.id === id
+    })
+  }
+
+  getActionUpdate = event => {
+    event.preventDefault();
+    var data = new FormData(event.target);
+    var bill = this.findBillById(parseInt(data.get("StateBillID")));
+    var StateBillID = bill.StateBillID;
+    return {
+      StateBillID: StateBillID,
+      Position: data.get("Position"),
+      Call: this.stringToBoolean(data.get("Call")),
+      Event: this.stringToBoolean(data.get("Event")),
+      Online: this.stringToBoolean(data.get("Online")),
+      SentOn: this.stringToBoolean(data.get("SentOn")),
+      Other: this.stringToBoolean(data.get("Other")),
+      Notes: data.get("Notes"),
+      NumberOfActions: parseInt(data.get("NumberOfActions")),
+      LegislationID: parseInt(data.get("StateBillID"))
+    };
+  };
+
+  updateAction = event => {
+    event.preventDefault();
+    var data = new FormData(event.target);
+    var id = parseInt(data.get("StateBillID"));
+    const payload = this.getActionUpdate(event)
+
+    return fetch(baseURL + "tracking/" + id, {
+      method: "put",
+      body: JSON.stringify(payload),
+      headers: new Headers({
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      })
+    })
+      .then(() => this.componentDidMount())
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  deleteAction = event => {
+    event.preventDefault();
+    var data = new FormData(event.target);
+    var id = parseInt(data.get("StateBillID"));
+    console.log(id);
+
+    return fetch(baseURL + "tracking/" + id, {
+      method: "delete",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      })
+    })
+      .then(() => this.componentDidMount())
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  getNewLegislation = event => {
+    event.preventDefault();
+    var data = new FormData(event.target);
+    return {
+      StateBillID: data.get("StateBillID"),
+      StateCode: data.get("StateCode"),
+      BillName: data.get("BillName"),
+      KeyWords: data.get("KeyWords"),
+      Link: data.get("Link")
+    };
+  };
+
+  addLegislation(event) {
+    event.preventDefault();
+    fetch(baseURL + "legislation", {
+      method: "post",
+      body: JSON.stringify(this.getNewLegislation(event)),
+      headers: new Headers({
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json"
+      })
+    })
+      .then(response => {
+        this.componentDidMount();
+      })
       .catch(err => {
         console.log(err);
       });
   }
 
-getDeletedAction(event){
-  var response = new FormData(event);
-  console.log(response);
-  var StateBillID = response.get("StateBillID");
-  return StateBillID.options[StateBillID.selectedIndex].id
-}
-
-  deleteAction(event){
+  getLegislationUpdate = event => {
     event.preventDefault();
-    fetch(baseURL + "tracking", + this.getDeletedAction(), {
-      method: "delete",
-      headers: new Header({
-        "Content-Type": "applicaiton/json"
+    var data = new FormData(event.target);
+    return {
+      StateBillID: data.get("StateBillID"),
+      StateCode: data.get("StateCode"),
+      BillName: data.get("BillName"),
+      KeyWords: data.get("KeyWords"),
+      Link: data.get("Link")
+    };
+  };
+
+  updateLegislation = event => {
+    event.preventDefault();
+    var data = new FormData(event.target);
+    var id = parseInt(data.get("StateBillID"));
+
+    return fetch(baseURL + "legislation/" + id, {
+      method: "put",
+      body: JSON.stringify(this.getLegislationUpdate(event)),
+      headers: new Headers({
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
       })
     })
-    .then(() => this.componentDidMount())
-    .catch(err => {
-      console.log(err);
-    });
-  }
+      .then(() => this.componentDidMount())
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  deleteLegislation = event => {
+    event.preventDefault();
+    var data = new FormData(event.target);
+    var id = parseInt(data.get("StateBillID"));
+    console.log(event.target);
+
+    return fetch(baseURL + "legislation/" + id, {
+      method: "delete",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      })
+    })
+      .then(() => this.componentDidMount())
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  deleteBoth = event => {
+    event.preventDefault();
+    var data = new FormData(event.target);
+    var id = parseInt(data.get("StateBillID"));
+    console.log(event.target);
+
+    return fetch(baseURL + "legislation/" + id, {
+      method: "delete",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      })
+    })
+      .then(() => this.componentDidMount())
+      .catch(error => {
+        console.log(error);
+      });
+
+    var LegislationID = parseInt(data.get("StateBillID"));
+    fetch(baseURL + "tracking")
+      .then(response => response.json())
+      .then(response => {
+        var id = response.id;
+        if (response.LegislationID === LegislationID) {
+          fetch(baseURL + "tracking" + id, {
+            method: "delete",
+            headers: new Headers({
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*"
+            })
+          })
+            .then(() => this.componentDidMount())
+            .catch(error => {
+              console.log(error);
+            });
+        }
+      });
+  };
 
   render() {
     return (
@@ -109,8 +279,9 @@ getDeletedAction(event){
                 <ActivismPortal
                   bills={this.state.bills}
                   legislation={this.state.legislation}
-                  add={this.addActions}
-                  takeOff={this.deleteAction}
+                  addActions={this.addActions}
+                  updateAction={this.updateAction}
+                  deleteAction={this.deleteAction}
                 />
               )}
             />
@@ -120,6 +291,10 @@ getDeletedAction(event){
                 <LegislationPortal
                   bills={this.state.bills}
                   legislation={this.state.legislation}
+                  addLegislation={this.addLegislation}
+                  updateLegislation={this.updateLegislation}
+                  deleteLegislation={this.deleteLegislation}
+                  deleteBoth={this.deleteBoth}
                 />
               )}
             />
