@@ -25,7 +25,7 @@ export default class Delete extends React.Component {
   render() {
     return (
       <div>
-        <h2>Remove a Bill</h2>
+        <h2>Remove a Bill Only</h2>
         <form id="delete-legislation" onSubmit={this.props.deleteLegislation}>
           <label htmlFor="StateBillID">Find Bill:</label>
           <select

@@ -10,17 +10,9 @@ export class AddAction extends React.Component {
 
   generateBills(bill) {
     return (
-      <option key={bill.id} id={bill.id}>
+      <option key={bill.id} id={bill.id} value={bill.id}>
         {bill.StateCode} {bill.StateBillID}
       </option>
-    );
-  }
-
-  generateLegislationID(bill) {
-    return (
-      <div key={bill.id} id={bill.id}>
-        {bill.id}
-      </div>
     );
   }
 

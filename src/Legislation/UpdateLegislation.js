@@ -1,16 +1,25 @@
 import React from "react";
+import Modal from "react-modal";
 
 export class Update extends React.Component {
   constructor() {
     super();
     this.state = {
+      modalIsOpen: false,
       id: ""
     };
-    this.generateBills = this.generateBills.bind(this);
+    Modal.setAppElement(document.body);
   }
 
+  openModal = () => {
+    this.setState({ modalIsOpen: true });
+  }
 
-  generateBills(bill) {
+  closeModal = () => {
+    this.setState({ modalIsOpen: false });
+  }
+
+  generateBills = bill => {
     return (
       <option key={bill.id} id={bill.id} value={bill.id}>
         {bill.StateCode} {bill.StateBillID}
@@ -25,6 +34,19 @@ export class Update extends React.Component {
   render() {
     return (
       <div>
+      <button
+        id="delete-open"
+        className="modal-open"
+        onClick={this.openModal}
+      >
+      <h2>Update a Bill</h2>
+      </button>
+      <Modal
+        isOpen={this.state.modalIsOpen}
+        onAfterOpen={this.afterOpenModal}
+        onRequestClose={this.closeModal}
+        contentLabel="DeleteBothModal"
+      >
         <h2>Update a Bill</h2>
         <form id="update-legislation" onSubmit={this.props.updateLegislation}>
         <label htmlFor="StateBillID">Select Bill to Update:</label>
@@ -51,6 +73,8 @@ export class Update extends React.Component {
           <input type="text" name="Link" />
           <input type="submit" id="update-button" value="Update Bill" />
         </form>
+        <button onClick={this.closeModal}>Done</button>
+      </Modal>
       </div>
     );
   }

@@ -47,12 +47,37 @@ class App extends Component {
     }
   }
 
-  getNewAction(event) {
+  findBillById = id => {
+    return this.state.bills.find(bill => {
+      return bill.id === id;
+    });
+  };
+
+  findActionById = id => {
+    return this.state.legislation.find(bill => {
+      return bill.id === id;
+    });
+  };
+
+  matchStateBillId = id => {
+    return this.state.legislation.find(bill => {
+      return bill.id === id;
+    })
+  }
+
+  matchLegiAndActionIds = id => {
+    return this.state.bills.find(bill =>{
+      return bill.LegislationID === id;
+    })
+  }
+
+  getNewAction = event => {
     event.preventDefault();
     var data = new FormData(event.target);
-    console.log(data.get);
+    var bill = this.findActionById(parseInt(data.get("StateBillID")));
+    var StateBillID = bill.StateCode + " " + bill.StateBillID;
     return {
-      StateBillID: data.get("StateBillID"),
+      StateBillID: StateBillID,
       Position: data.get("Position"),
       Call: this.stringToBoolean(data.get("Call")),
       Event: this.stringToBoolean(data.get("Event")),
@@ -63,10 +88,11 @@ class App extends Component {
       NumberOfActions: parseInt(data.get("NumberOfActions")),
       LegislationID: parseInt(data.get("StateBillID"))
     };
-  }
+  };
 
-  addActions(event) {
+  addActions = event => {
     event.preventDefault();
+
     fetch(baseURL + "tracking", {
       method: "post",
       body: JSON.stringify(this.getNewAction(event)),
@@ -81,14 +107,7 @@ class App extends Component {
       .catch(error => {
         console.log(error);
       });
-  }
-
-
-  findBillById(id){
-    return this.state.bills.find(bill => {
-      return bill.id === id
-    })
-  }
+  };
 
   getActionUpdate = event => {
     event.preventDefault();
@@ -113,7 +132,7 @@ class App extends Component {
     event.preventDefault();
     var data = new FormData(event.target);
     var id = parseInt(data.get("StateBillID"));
-    const payload = this.getActionUpdate(event)
+    const payload = this.getActionUpdate(event);
 
     return fetch(baseURL + "tracking/" + id, {
       method: "put",
@@ -181,8 +200,10 @@ class App extends Component {
   getLegislationUpdate = event => {
     event.preventDefault();
     var data = new FormData(event.target);
+    var bill = this.matchStateBillId(parseInt(data.get("StateBillID")));
+    var StateBillID = bill.StateBillID;
     return {
-      StateBillID: data.get("StateBillID"),
+      StateBillID: StateBillID ,
       StateCode: data.get("StateCode"),
       BillName: data.get("BillName"),
       KeyWords: data.get("KeyWords"),
@@ -213,7 +234,6 @@ class App extends Component {
     event.preventDefault();
     var data = new FormData(event.target);
     var id = parseInt(data.get("StateBillID"));
-    console.log(event.target);
 
     return fetch(baseURL + "legislation/" + id, {
       method: "delete",
@@ -232,9 +252,8 @@ class App extends Component {
     event.preventDefault();
     var data = new FormData(event.target);
     var id = parseInt(data.get("StateBillID"));
-    console.log(event.target);
 
-    return fetch(baseURL + "legislation/" + id, {
+     fetch(baseURL + "legislation/" + id, {
       method: "delete",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -246,24 +265,18 @@ class App extends Component {
         console.log(error);
       });
 
-    var LegislationID = parseInt(data.get("StateBillID"));
-    fetch(baseURL + "tracking")
-      .then(response => response.json())
-      .then(response => {
-        var id = response.id;
-        if (response.LegislationID === LegislationID) {
-          fetch(baseURL + "tracking" + id, {
-            method: "delete",
-            headers: new Headers({
-              "Content-Type": "application/json",
-              "Access-Control-Allow-Origin": "*"
-            })
-          })
-            .then(() => this.componentDidMount())
-            .catch(error => {
-              console.log(error);
-            });
-        }
+    var bill = this.matchLegiAndActionIds(id);
+    var ActionId = bill.id;
+     fetch(baseURL + "tracking/" + ActionId, {
+      method: "delete",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      })
+    })
+      .then(() => this.componentDidMount())
+      .catch(err => {
+        console.log(err);
       });
   };
 
