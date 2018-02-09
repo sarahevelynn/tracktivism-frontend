@@ -1,16 +1,26 @@
 import React from "react";
+import Modal from "react-modal";
 
 export class Delete extends React.Component {
   constructor() {
     super();
     this.state = {
+      modalIsOpen: false,
       id: ""
     };
-    this.generateBills = this.generateBills.bind(this);
+    Modal.setAppElement(document.body);
+  }
+
+  openModal = () => {
+    this.setState({ modalIsOpen: true });
+  }
+
+  closeModal = () => {
+    this.setState({ modalIsOpen: false });
   }
 
 
-  generateBills(bill) {
+  generateBills = bill => {
     return (
       <option key={bill.id} id={bill.id} value={bill.id}>
         {bill.StateBillID}
@@ -25,6 +35,19 @@ export class Delete extends React.Component {
   render() {
     return (
       <div>
+      <button
+        id="delete-open"
+        className="modal-open"
+        onClick={this.openModal}
+      >
+      <h2>Remove an Action</h2>
+      </button>
+      <Modal
+        isOpen={this.state.modalIsOpen}
+        onAfterOpen={this.afterOpenModal}
+        onRequestClose={this.closeModal}
+        contentLabel="DeleteBothModal"
+      >
         <h2>Remove an Action</h2>
         <form id="delete-actions" onSubmit={this.props.deleteAction}>
           <label htmlFor="StateBillID">Find Bill:</label>
@@ -43,6 +66,8 @@ export class Delete extends React.Component {
           </select>
           <input type="submit" id="delete-button" value="Remove Action" />
         </form>
+        <button onClick={this.closeModal}>Done</button>
+      </Modal>
       </div>
     );
   }
