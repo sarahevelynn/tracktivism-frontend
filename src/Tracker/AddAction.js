@@ -47,7 +47,7 @@ export class AddAction extends React.Component {
     return (
       <div id="add-action">
         <button
-          id="delete-open"
+          id="add-button"
           className="modal-open"
           onClick={this.openModal}
         >
@@ -57,7 +57,7 @@ export class AddAction extends React.Component {
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
-          contentLabel="DeleteBothModal"
+          contentLabel="AddModal"
         >
           <h2>Add Some Action </h2>
           <form id="new-action" onSubmit={this.props.addActions}>
@@ -129,9 +129,9 @@ export class AddAction extends React.Component {
                 value={this.state.count}
               />
             </div>
-            <input type="submit" id="add-action-button" value="Submit Action" />
+            <input type="submit" id="add-button" value="Submit Action" />
           </form>
-          <button onClick={this.closeModal}>Done</button>
+          <button onClick={this.closeModal} id="done-button">Done</button>
         </Modal>
       </div>
     );

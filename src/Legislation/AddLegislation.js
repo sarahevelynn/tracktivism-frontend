@@ -6,6 +6,7 @@ export class AddLegislation extends React.Component {
     super(props);
     this.state = {
       modalIsOpen: false,
+      KeyWords: ""
     };
     Modal.setAppElement(document.body);
   }
@@ -18,11 +19,23 @@ export class AddLegislation extends React.Component {
     this.setState({ modalIsOpen: false });
   }
 
+  generateCatagories = bill => {
+    return (
+      <option key={bill.id} id={bill.KeyWords} value={bill.KeyWords}>
+        {bill.KeyWords}
+      </option>
+    );
+  }
+
+  change = event => {
+    this.setState({KeyWords: event.target.value});
+  }
+
   render() {
     return (
       <div id="add-legislation">
       <button
-        id="delete-open"
+        id="add-button"
         className="modal-open"
         onClick={this.openModal}
       >
@@ -43,7 +56,19 @@ export class AddLegislation extends React.Component {
           <label htmlFor="BillName">Enter Bill Name:</label>
           <input type="text" name="BillName" />
           <label htmlFor="KeyWords">Enter Key Words</label>
-          <input type="text" name="KeyWords" />
+          <select
+            id="update-legislation"
+            name="KeyWords"
+            onChange={this.change} value={this.state.KeyWords}
+            onClick={this.change}
+            onKeyUp={this.change}
+            onMouseLeave={this.change}
+          >
+            <option value="" disabled selected>
+              Select something...
+            </option>
+          {this.props.catagories.map(this.generateCatagories)}
+          </select>
           <label htmlFor="Link">Enter Bill Link</label>
           <input type="text" name="Link" />
           <input
@@ -52,7 +77,7 @@ export class AddLegislation extends React.Component {
             value="Submit Legislation"
           />
         </form>
-        <button onClick={this.closeModal}>Done</button>
+        <button onClick={this.closeModal} id="done-button">Done</button>
       </Modal>
       </div>
     );

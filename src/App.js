@@ -13,7 +13,8 @@ class App extends Component {
     super(props);
     this.state = {
       bills: [],
-      legislation: []
+      legislation: [],
+      catagories: []
     };
     this.stringToBoolean = this.stringToBoolean.bind(this);
     this.getNewAction = this.getNewAction.bind(this);
@@ -33,13 +34,14 @@ class App extends Component {
       .then(response => {
         this.setState({
           legislation: response.legislation,
-          bills: response.tracking
+          bills: response.tracking,
+          catagories: response.catagories,
         });
       })
       .catch(error => console.log(error));
   }
 
-  stringToBoolean(boolean) {
+  stringToBoolean = boolean => {
     if (boolean === "true") {
       return true;
     } else if (boolean === "false") {
@@ -66,10 +68,11 @@ class App extends Component {
   }
 
   matchLegiAndActionIds = id => {
-    return this.state.bills.find(bill =>{
+    return this.state.bills.find(bill => {
       return bill.LegislationID === id;
     })
   }
+
 
   getNewAction = event => {
     event.preventDefault();
@@ -179,7 +182,7 @@ class App extends Component {
     };
   };
 
-  addLegislation(event) {
+  addLegislation = event => {
     event.preventDefault();
     fetch(baseURL + "legislation", {
       method: "post",
@@ -195,6 +198,12 @@ class App extends Component {
       .catch(err => {
         console.log(err);
       });
+  }
+
+  updatePopulated = event => {
+    event.preventDefault();
+    var data = event.target;
+    var bill = this.matchStateBillId
   }
 
   getLegislationUpdate = event => {
@@ -304,8 +313,10 @@ class App extends Component {
                 <LegislationPortal
                   bills={this.state.bills}
                   legislation={this.state.legislation}
+                  catagories={this.state.catagories}
                   addLegislation={this.addLegislation}
                   updateLegislation={this.updateLegislation}
+                  updatePopulated={this.updatePopulated}
                   deleteLegislation={this.deleteLegislation}
                   deleteBoth={this.deleteBoth}
                 />

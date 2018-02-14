@@ -3,26 +3,104 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  display: flex;
+  justify-content: flex-start;
+  height: 130px;
 }
 
 .App-header {
-  background-color: #222;
+  background-color: #fffff;
   height: 150px;
   padding: 20px;
   color: white;
 }
-
-.App-title {
-  font-size: 1.5em;
+header {
 }
 
-.App-intro {
-  font-size: large;
+td {
+  padding: 1px;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+th {
+  font-size: 1.2em;
+  text-decoration: underline;
+}
+
+a {
+  color: #073d3c;
+  text-decoration: none;
+}
+a:hover {
+  color: #0ecac6;
+}
+#legislation-table-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px;
+}
+
+#tracking-table {
+  margin-left: auto;
+  margin-right: auto;
+  display: table;
+  border-collapse: separate;
+  border-spacing: 50px 0;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  font-weight: 100;
+  padding: 0.4em;
+  background-color: #ddecec;
+}
+
+#counter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-spacing: 50px 0;
+  border: 3px solid #ccc;
+  padding: 4px;
+  font-size: 2em;
+}
+
+#bottom-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+#add-button,
+#update-button,
+#delete-button,
+#delete-button,
+#done-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #1a7b7b;
+  border: 3px solid #1a7b7b;
+  border-radius: 8px;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
+  margin: 0.5em;
+}
+
+#catagories-chart {
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+  padding: 2em;
+  margin: 2em;
+  width: 700px;
+  height: auto;
 }

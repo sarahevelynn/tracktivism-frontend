@@ -36,7 +36,7 @@ export class Delete extends React.Component {
     return (
       <div>
       <button
-        id="delete-open"
+        id="delete-button"
         className="modal-open"
         onClick={this.openModal}
       >
@@ -46,7 +46,7 @@ export class Delete extends React.Component {
         isOpen={this.state.modalIsOpen}
         onAfterOpen={this.afterOpenModal}
         onRequestClose={this.closeModal}
-        contentLabel="DeleteBothModal"
+        contentLabel="DeleteModal"
       >
         <h2>Remove an Action</h2>
         <form id="delete-actions" onSubmit={this.props.deleteAction}>
@@ -66,7 +66,7 @@ export class Delete extends React.Component {
           </select>
           <input type="submit" id="delete-button" value="Remove Action" />
         </form>
-        <button onClick={this.closeModal}>Done</button>
+        <button onClick={this.closeModal} id="done-button">Done</button>
       </Modal>
       </div>
     );

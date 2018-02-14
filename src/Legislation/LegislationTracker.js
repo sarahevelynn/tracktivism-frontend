@@ -1,26 +1,28 @@
 import React from "react";
 
-export default class LegiTracker extends React.Component{
-  constructor(props){
-    super(props)
-    this.createLegislationTable=this.createLegislationTable.bind(this);
+export default class LegiTracker extends React.Component {
+  constructor(props) {
+    super(props);
+    this.createLegislationTable = this.createLegislationTable.bind(this);
   }
 
-createLegislationTable(bill){
-  return(
-    <tr key={bill.id}>
-      <td className="bill-id">{bill.StateBillID}</td>
-      <td>{bill.StateCode}</td>
-      <td>{bill.BillName}</td>
-      <td>{bill.KeyWords}</td>
-      <td>{bill.Link}</td>
-    </tr>
-  )
-}
+  createLegislationTable(bill) {
+    return (
+      <tr key={bill.id}>
+        <td>{bill.StateCode}</td>
+        <td>{bill.StateBillID}</td>
+        <td>{bill.BillName}</td>
+        <td>{bill.KeyWords}</td>
+        <td>
+          <a href={bill.Link}>Read Bill Here</a>
+        </td>
+      </tr>
+    );
+  }
   render() {
-    return(
-      <div id="legislation-table">
-        <table id="tracking">
+    return (
+      <div id="legislation-table-div">
+        <table id="tracking-table">
           <tbody>
             <tr>
               <th>Bill ID</th>
@@ -33,6 +35,6 @@ createLegislationTable(bill){
           </tbody>
         </table>
       </div>
-    )
+    );
   }
 }

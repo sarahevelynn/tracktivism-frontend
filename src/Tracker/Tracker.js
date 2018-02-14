@@ -52,8 +52,8 @@ export class Tracker extends React.Component {
 
   render() {
     return (
-      <div id="activism-table">
-        <table id="tracking">
+      <div id="activism-table-div">
+        <table id="activism-table">
           <tbody>
             <tr>
               <th>Bill ID</th>

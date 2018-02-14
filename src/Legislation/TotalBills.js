@@ -15,7 +15,7 @@ export default class BillsTracking extends React.Component {
   }
 
   render() {
-    return(<h1>Total Number of Bills to Keep an Eye On: {this.totalBills(this.props.data)}</h1>
+    return(<h1 id="counter">Total Number of Bills to Keep an Eye On: {this.totalBills(this.props.data)}</h1>
     )
   }
 }

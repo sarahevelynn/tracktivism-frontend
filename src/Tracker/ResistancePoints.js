@@ -15,7 +15,7 @@ export class ResistancePoints extends React.Component {
   }
 
   render() {
-    return(<h1>Resistance Points: {this.resistanceTally(this.props.data)}</h1>
+    return(<h1 id="counter">Resistance Points: {this.resistanceTally(this.props.data)}</h1>
     )
   }
 }

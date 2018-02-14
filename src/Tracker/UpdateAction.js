@@ -46,7 +46,7 @@ export class Update extends React.Component {
     return (
       <div id="add-update">
       <button
-        id="delete-open"
+        id="update-button"
         className="modal-open"
         onClick={this.openModal}
       >
@@ -56,7 +56,7 @@ export class Update extends React.Component {
         isOpen={this.state.modalIsOpen}
         onAfterOpen={this.afterOpenModal}
         onRequestClose={this.closeModal}
-        contentLabel="DeleteBothModal"
+        contentLabel="UpdateModule"
       >
         <h2>Update Your Action </h2>
         <form id="new-update" onSubmit={this.props.updateAction}>
@@ -128,9 +128,9 @@ export class Update extends React.Component {
               value={this.state.count}
             />
           </div>
-          <input type="submit" id="add-action-button" value="Submit Action" />
+          <input type="submit" id="update-button" value="Submit Action" />
         </form>
-        <button onClick={this.closeModal}>Done</button>
+        <button onClick={this.closeModal} id="done-button">Done</button>
       </Modal>
       </div>
     );
