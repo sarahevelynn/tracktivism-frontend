@@ -3,10 +3,9 @@ import React from "react";
 export default class LegiTracker extends React.Component {
   constructor(props) {
     super(props);
-    this.createLegislationTable = this.createLegislationTable.bind(this);
   }
 
-  createLegislationTable(bill) {
+  createLegislationTable = bill => {
     return (
       <tr key={bill.id}>
         <td>{bill.StateCode}</td>
@@ -21,7 +20,7 @@ export default class LegiTracker extends React.Component {
   }
   render() {
     return (
-      <div id="legislation-table-div">
+      <div id="table-div">
         <table id="tracking-table">
           <tbody>
             <tr>

@@ -1,20 +1,38 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: SoftLine;
+  src: url("./fonts/SoftLine.otf");
 }
 
-.App-logo {
+@font-face {
+  font-family: Monly;
+  src: url("./fonts/Monly.otf");
+}
+
+main {
   display: flex;
-  justify-content: flex-start;
-  height: 130px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: SoftLine, sans-serif;
 }
 
-.App-header {
-  background-color: #fffff;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
 header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: Monly, sans-serif;
+  background-color: #b3bcbc;
+}
+
+footer {
+  display: flex;
+  justify-content: flex-end;
+  background-color: #efefef;
+  text-align: left;
+  padding: 0.5em;
+  margin-top: 3em;
+  font-family: Monly, sans-serif;
+  font-size: 2em;
 }
 
 td {
@@ -32,60 +50,215 @@ a {
 }
 a:hover {
   color: #0ecac6;
+  font-weight: bold;
 }
-#legislation-table-div {
+
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.App-content {
+  flex: 1 0 auto;
+  padding: var(— space) var(— space) 0;
+  width: 100%;
+}
+
+.App-content:after {
+  content: ‘\00a0’;
+  display: block;
+  margin-top: var(— space);
+  height: 0;
+  visibility: hidden;
+}
+
+.App-logo {
+  display: flex;
+  align-self: center;
+  height: 170px;
+  margin: 1em;
+}
+
+.App-header {
+  background-color: #fffff;
+  height: 150px;
+  padding: 10px;
+}
+
+#tagline {
+  display: flex;
+  align-self: flex-end;
+  color: black;
+  margin-right: 1em;
+  font-size: 3em;
+  letter-spacing: 0.07em;
+}
+
+#fist {
+  width: 100%;
+  height: auto;
+  margin-top: 4em;
+  margin-bottom: 1em;
+}
+
+#navagation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin: 10px;
+}
+
+#navagate-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 100px;
+  background-color: #1E4F42;
+  color: white;
+  font-weight: bolder;
+  font-size: 30px;
+  font-weight: 600;
+  margin: 10px;
+  padding: 10px;
+  border: 3px solid #515151;
+  border-radius: 10px;
+  font-family: SoftLine, sans-serif;
+}
+
+#table-div {
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 10px;
 }
 
-#tracking-table {
+#tracking-table,
+#activism-table {
   margin-left: auto;
   margin-right: auto;
-  display: table;
-  border-collapse: separate;
-  border-spacing: 50px 0;
-  border: 1px solid #ccc;
+  margin-bottom: 2em;
+  width: 100%;
+  border-spacing: auto;
+  border: 2px solid #93bdb7;
   font-size: 1em;
   font-weight: 100;
   padding: 0.4em;
   background-color: #ddecec;
 }
 
-#counter {
+#modal {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-spacing: 50px 0;
-  border: 3px solid #ccc;
+}
+
+#form-title {
+  font-size: 1.7rem;
+}
+
+#update-form,
+#delete-form,
+#add-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin-left: 1em;
+}
+
+input[type="text"] {
+  width: 80%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+input[type="number"] {
+  display: flex;
+  text-align: center;
+  width: 10%;
+  margin: 0.5em;
+  padding: 0.5em 0;
+  font-size: 1em;
+  box-sizing: border-box;
+  background-color: #8e8e8e;
+  font-weight: bolder;
+}
+
+select {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+  font-size: 1em;
+}
+
+#counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3em 1em;
+  width: 400px;
+  border: 5px solid gray;
   padding: 4px;
-  font-size: 2em;
+  font-size: 1em;
+}
+
+#counter:hover {
+  background: #21a7a7;
+  box-shadow: inset 0 0 0 6px #0e6565;
+  border: 0px;
+  font-size: 1.8em;
+  letter-spacing: 0.2em;
+  font-weight: bold;
+  font-style: oblique;
+  color: #eee;
+  text-shadow: 4px 4px 1px #308484;
+  font-family: Monly, sans-serif;
+  padding: 0;
+  width: 400px;
+  height: 100px;
+  line-height: 180%;
+  margin: 1.58em;
 }
 
 #bottom-menu {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  align-content: space-between;
 }
 
 #buttons {
   display: flex;
-  flex-direction: column;
   justify-content: flex-start;
+  align-self: center;
+  flex-direction: column;
+}
+
+#buttons1 {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 #add-button,
 #update-button,
 #delete-button,
-#delete-button,
-#done-button {
+#done-button,
+#submit-button,
+#close-button {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-content: center;
   background-color: #1a7b7b;
-  border: 3px solid #1a7b7b;
+  border: 3px solid #515151;
   border-radius: 8px;
   color: white;
   font-size: 1rem;
@@ -93,14 +266,42 @@ a:hover {
   padding-top: 0.3em;
   padding-bottom: 0.3em;
   margin: 0.5em;
+  margin-left: 1em;
+  width: 200px;
+  height: auto;
+  font-family: SoftLine, sans-serif;
+}
+
+#add-button:hover,
+#update-button:hover,
+#delete-button:hover,
+#navagate-button:hover {
+  background: #0e6565;
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+  box-shadow: inset 0 0 0 5px #0e6565;
+  border: 0px;
+  font-weight: bold;
+  font-style: oblique;
+  color: #eee;
+  text-shadow: 4px 4px 1px #308484;
+}
+
+#close-button {
+  align-self: flex-end;
+  font-weight: bolder;
+  font-size: 1.2em;
+  padding: 0.2em;
+  width: 60px;
+  height: 60px;
 }
 
 #catagories-chart {
+  padding-bottom: 1em;
   display: flex;
   justify-content: flex-end;
-  align-content: center;
-  padding: 2em;
-  margin: 2em;
+  align-self: center;
   width: 700px;
   height: auto;
 }

@@ -45,13 +45,13 @@ export class AddAction extends React.Component {
 
   render() {
     return (
-      <div id="add-action">
+      <div>
         <button
           id="add-button"
           className="modal-open"
           onClick={this.openModal}
         >
-          <h2>Add Some Action </h2>
+          <h2>Level-Up Your Action </h2>
         </button>
         <Modal
           isOpen={this.state.modalIsOpen}
@@ -59,8 +59,12 @@ export class AddAction extends React.Component {
           onRequestClose={this.closeModal}
           contentLabel="AddModal"
         >
-          <h2>Add Some Action </h2>
-          <form id="new-action" onSubmit={this.props.addActions}>
+        <div id="modal">
+        <button onClick={this.closeModal} id="close-button">
+          Close
+        </button>
+          <h2 id="form-title">Add Some Action </h2>
+          <form id="add-form" onSubmit={this.props.addActions}>
             <label htmlFor="StateBillID">Find your bill:</label>
             <select name="StateBillID" id="StateBillID">
               <option value="" disabled selected>
@@ -131,7 +135,7 @@ export class AddAction extends React.Component {
             </div>
             <input type="submit" id="add-button" value="Submit Action" />
           </form>
-          <button onClick={this.closeModal} id="done-button">Done</button>
+          </div>
         </Modal>
       </div>
     );

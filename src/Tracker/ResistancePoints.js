@@ -2,20 +2,23 @@ import React from "react";
 
 export class ResistancePoints extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.resistanceTally = this.resistanceTally.bind(this);
   }
 
-  resistanceTally(bill){
+  resistanceTally = bill => {
     var tally = 0;
-    for(var i =0; i<bill.length; i++){
-      tally += bill[i].NumberOfActions
+    for (var i = 0; i < bill.length; i++) {
+      tally += bill[i].NumberOfActions;
     }
     return tally;
   }
 
   render() {
-    return(<h1 id="counter">Resistance Points: {this.resistanceTally(this.props.data)}</h1>
-    )
+    return (
+      <div id="counter">
+        <h1 id="points">Resistance Points: {this.resistanceTally(this.props.data)}</h1>
+      </div>
+    );
   }
 }

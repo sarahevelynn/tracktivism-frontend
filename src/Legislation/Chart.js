@@ -127,9 +127,9 @@ export default class Chart extends React.Component {
           borderColor: "#0A918B",
           fill: "#159A95",
           radius: 2,
-          pointRadius: 8,
-          pointBorderWidth: 3,
-          pointBackgroundColor: "#45F0E9",
+          pointRadius: 6,
+          pointBorderWidth: 2,
+          pointBackgroundColor: "#625A55",
           pointBorderColor: "#1E6865",
           pointHoverRadius: 10,
           data: [
@@ -173,7 +173,8 @@ export default class Chart extends React.Component {
             display: true,
             text: "Your Web of Tracktivism",
             fontSize: 25,
-            padding: 15
+            padding: 15,
+            fontColor: "#2E2A28"
         }
     };
 

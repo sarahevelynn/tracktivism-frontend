@@ -9,12 +9,10 @@ import thumbsDown from "./thumbsDown.png";
 export class Tracker extends React.Component {
   constructor(props) {
     super(props);
-    this.positionIcon = this.positionIcon.bind(this);
-    this.actionIcon = this.actionIcon.bind(this);
     this.createActivismTable = this.createActivismTable.bind(this);
   }
 
-  positionIcon(response) {
+  positionIcon = response => {
     if (response === "Support") {
       return <img id="response-icon" src={thumbsUp} alt="Support" className="position-icon" />;
     } else if (response === "Neutral") {
@@ -26,7 +24,7 @@ export class Tracker extends React.Component {
     }
   }
 
-  actionIcon(response) {
+  actionIcon = response => {
     if (response === true) {
       return <img id="response-icon" src={yes} alt="Yes" className="action-icon" />;
     } else if (response === false) {
@@ -34,7 +32,7 @@ export class Tracker extends React.Component {
     }
   }
 
-  createActivismTable(bill) {
+  createActivismTable = bill => {
     return (
       <tr key={bill.id}>
         <td className="bill-id">{bill.StateBillID}</td>
@@ -52,7 +50,7 @@ export class Tracker extends React.Component {
 
   render() {
     return (
-      <div id="activism-table-div">
+      <div id="table-div">
         <table id="activism-table">
           <tbody>
             <tr>

@@ -1,11 +1,14 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import logo from "./logo.png";
 
 export default function Header() {
   return (
-    <header className="App-header">
+    <Link to="/">
+    <header>
       <img src= {logo} className="App-logo" alt="logo" />
-      <h2 id="tagline"> Your tool to organizing in the resistance</h2>
+      <h2 id="tagline"> Your organization tool in the resistance.</h2>
     </header>
+    </Link>
   );
 }

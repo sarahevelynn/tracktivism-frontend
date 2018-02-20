@@ -47,8 +47,12 @@ export default class DeleteBoth extends React.Component {
           onRequestClose={this.closeModal}
           contentLabel="DeleteBothModal"
         >
-          <h2>Remove Bill & Action</h2>
-          <form id="delete-legislation" onSubmit={this.props.deleteBoth}>
+        <div id="modal">
+        <button onClick={this.closeModal} id="close-button">
+          Close
+        </button>
+          <h2 id="form-title">Remove Bill & Action</h2>
+          <form id="delete-form" onSubmit={this.props.deleteBoth}>
             <label htmlFor="StateBillID">Find Bill:</label>
             <select
               id="delete-legislation"
@@ -64,9 +68,9 @@ export default class DeleteBoth extends React.Component {
               </option>
               {this.props.data.map(this.generateBills)}
             </select>
-            <input type="submit" id="delete-button" value="Remove Bill" />
+            <input type="submit" id="submit-button" value="Remove Bill" />
           </form>
-          <button onClick={this.closeModal} id="done-button">Done</button>
+          </div>
         </Modal>
       </div>
     );

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "./App.css";
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
+import Homepage from "./Homepage/Index";
 import ActivismPortal from "./Tracker";
 import LegislationPortal from "./Legislation";
 
@@ -16,17 +17,6 @@ class App extends Component {
       legislation: [],
       catagories: []
     };
-    this.stringToBoolean = this.stringToBoolean.bind(this);
-    this.getNewAction = this.getNewAction.bind(this);
-    this.addActions = this.addActions.bind(this);
-    this.findBillById = this.findBillById.bind(this);
-    this.updateAction = this.updateAction.bind(this);
-    this.deleteAction = this.deleteAction.bind(this);
-    this.getNewLegislation = this.getNewLegislation.bind(this);
-    this.addLegislation = this.addLegislation.bind(this);
-    this.updateLegislation = this.updateLegislation.bind(this);
-    this.deleteLegislation = this.deleteLegislation.bind(this);
-    this.deleteBoth = this.deleteBoth.bind(this);
   }
   componentDidMount() {
     fetch(baseURL)
@@ -35,7 +25,7 @@ class App extends Component {
         this.setState({
           legislation: response.legislation,
           bills: response.tracking,
-          catagories: response.catagories,
+          catagories: response.catagories
         });
       })
       .catch(error => console.log(error));
@@ -47,7 +37,7 @@ class App extends Component {
     } else if (boolean === "false") {
       return false;
     }
-  }
+  };
 
   findBillById = id => {
     return this.state.bills.find(bill => {
@@ -64,15 +54,14 @@ class App extends Component {
   matchStateBillId = id => {
     return this.state.legislation.find(bill => {
       return bill.id === id;
-    })
-  }
+    });
+  };
 
   matchLegiAndActionIds = id => {
     return this.state.bills.find(bill => {
       return bill.LegislationID === id;
-    })
-  }
-
+    });
+  };
 
   getNewAction = event => {
     event.preventDefault();
@@ -198,13 +187,13 @@ class App extends Component {
       .catch(err => {
         console.log(err);
       });
-  }
+  };
 
   updatePopulated = event => {
     event.preventDefault();
     var data = event.target;
-    var bill = this.matchStateBillId
-  }
+    var bill = this.matchStateBillId;
+  };
 
   getLegislationUpdate = event => {
     event.preventDefault();
@@ -212,7 +201,7 @@ class App extends Component {
     var bill = this.matchStateBillId(parseInt(data.get("StateBillID")));
     var StateBillID = bill.StateBillID;
     return {
-      StateBillID: StateBillID ,
+      StateBillID: StateBillID,
       StateCode: data.get("StateCode"),
       BillName: data.get("BillName"),
       KeyWords: data.get("KeyWords"),
@@ -258,43 +247,47 @@ class App extends Component {
   };
 
   deleteBoth = event => {
-    event.preventDefault();
     var data = new FormData(event.target);
-    var id = parseInt(data.get("StateBillID"));
+    var action = this.matchLegiAndActionIds(id);
 
-     fetch(baseURL + "legislation/" + id, {
-      method: "delete",
-      headers: new Headers({
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*"
+    if (action && action.id != undefined) {
+      var id = parseInt(data.get("StateBillID"));
+      fetch(baseURL + "legislation/" + id, {
+        method: "delete",
+        headers: new Headers({
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*"
+        })
       })
-    })
-      .then(() => this.componentDidMount())
-      .catch(error => {
-        console.log(error);
-      });
+        .then(() => this.componentDidMount())
+        .catch(error => {
+          console.log(error);
+        });
 
-    var bill = this.matchLegiAndActionIds(id);
-    var ActionId = bill.id;
-     fetch(baseURL + "tracking/" + ActionId, {
-      method: "delete",
-      headers: new Headers({
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*"
+      var ActionId = action.id;
+      fetch(baseURL + "tracking/" + ActionId, {
+        method: "delete",
+        headers: new Headers({
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*"
+        })
       })
-    })
-      .then(() => this.componentDidMount())
-      .catch(err => {
-        console.log(err);
-      });
+        .then(() => this.componentDidMount())
+        .catch(err => {
+          console.log(err);
+        });
+    } else {
+      alert("No action associated with this bill! Please select 'Remove Only a Bill'.");
+    }
   };
 
   render() {
     return (
       <div className="App">
-        <Header />
         <Router>
-          <div>
+          <div className="App-content">
+            <Header />
+            <Route exact path="/" component={Homepage} />
             <Route
               path="/tracking"
               render={() => (

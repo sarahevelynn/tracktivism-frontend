@@ -9,11 +9,22 @@ export default class ActivismProfile extends React.Component {
   render() {
     return (
       <main>
-        <ResistancePoints data={this.props.bills}/>
+        <ResistancePoints data={this.props.bills} />
         <Tracker data={this.props.bills} />
-        <AddAction data={this.props.legislation} addActions={this.props.addActions} />
-        <Update data={this.props.bills} updateAction={this.props.updateAction} />
-        <Delete data={this.props.bills} deleteAction={this.props.deleteAction} />
+        <div id="buttons1">
+          <AddAction
+            data={this.props.legislation}
+            addActions={this.props.addActions}
+          />
+          <Update
+            data={this.props.bills}
+            updateAction={this.props.updateAction}
+          />
+          <Delete
+            data={this.props.bills}
+            deleteAction={this.props.deleteAction}
+          />
+        </div>
       </main>
     );
   }

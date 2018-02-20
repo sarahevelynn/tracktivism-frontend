@@ -44,7 +44,7 @@ export class Update extends React.Component {
 
   render() {
     return (
-      <div id="add-update">
+      <div>
       <button
         id="update-button"
         className="modal-open"
@@ -58,8 +58,12 @@ export class Update extends React.Component {
         onRequestClose={this.closeModal}
         contentLabel="UpdateModule"
       >
-        <h2>Update Your Action </h2>
-        <form id="new-update" onSubmit={this.props.updateAction}>
+      <div id="modal">
+      <button onClick={this.closeModal} id="close-button">
+        Close
+      </button>
+        <h2 id="form-title">Update Your Action </h2>
+        <form id="update-form" onSubmit={this.props.updateAction}>
           <label htmlFor="StateBillID">Find your bill:</label>
           <select name="StateBillID" id="StateBillID">
             <option value="" disabled selected>
@@ -130,7 +134,7 @@ export class Update extends React.Component {
           </div>
           <input type="submit" id="update-button" value="Submit Action" />
         </form>
-        <button onClick={this.closeModal} id="done-button">Done</button>
+        </div>
       </Modal>
       </div>
     );
