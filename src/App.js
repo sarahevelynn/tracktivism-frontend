@@ -7,7 +7,7 @@ import Homepage from "./Homepage/Index";
 import ActivismPortal from "./Tracker";
 import LegislationPortal from "./Legislation";
 
-var baseURL = "https://tracktivism.herokuapp.com/";
+var baseURL = "https://tracktivism-data.herokuapp.com/";
 
 class App extends Component {
   constructor(props) {
