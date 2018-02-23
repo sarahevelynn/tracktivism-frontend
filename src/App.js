@@ -277,7 +277,9 @@ class App extends Component {
           console.log(err);
         });
     } else {
-      alert("No action associated with this bill! Please select 'Remove Only a Bill'.");
+      alert(
+        "No action associated with this bill! Please select 'Remove Only a Bill'."
+      );
     }
   };
 

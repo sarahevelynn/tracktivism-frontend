@@ -111,7 +111,8 @@ a:hover {
   margin: 10px;
 }
 
-#navagate-button {
+#navagate-legislation,
+#navagate-tracking {
   display: flex;
   justify-content: center;
   align-items: center;

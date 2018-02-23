@@ -8,10 +8,10 @@ export default function Homepage() {
     <img id="fist" src= {fist} className="App-fist" alt="fist" />
     <div id="navagation">
        <Link to="/tracking">
-         <div id="navagate-button">Track Your Activism</div>
+         <div id="navagate-tracking">Track Your Activism</div>
        </Link>
        <Link to="/legislation">
-         <div id="navagate-button">Monitor Your Bills</div>
+         <div id="navagate-legislation">Monitor Your Bills</div>
        </Link>
      </div>
      </div>

@@ -1,16 +1,16 @@
-describe("Test the Legislation Page Works Correctly", function() {
-  it("Title has complete information with Intern Connect", function() {
-    cy.visit("https://intern-connect.firebaseapp.com/index.html");
-    cy.get(".title").should("has.text", "Intern Connect");
+describe("Test the App Loads Correctly", function() {
+  it("Tagline is complete", function() {
+    cy.visit("https://tracktivism.herokuapp.com/");
+    cy.get(".tagline").should("has.text", "Your organization tool in the resistance");
   });
-  it("Load both the student and company button forms", function() {
-    cy.get(".buttons div").should("have.length", 2);
-    cy.get(".buttons div").eq(0).should("has.class", "student");
-    cy.get(".buttons div").eq(1).should("has.class", "company")
+  it("Load both the legislation and tracking buttons", function() {
+    cy.get(".navagation div").should("have.length", 2);
+    cy.get(".buttons div").eq(0).should("has.id", "navagate-tracking");
+    cy.get(".buttons div").eq(1).should("has.id", "navagate-legislation")
   });
-  it("Ensure student form loads correctly", function() {
-    cy.get(".student").click();
-    cy.url().should("contain","studentForm.html");
+  it("Ensure tracking button goes to correct link", function() {
+    cy.get(".navagate-tracking").click();
+    cy.url().should("contain","/tracking");
     cy.get(".form").find("label").should("have.length", 12);
     cy.get(".logo").click();
     cy.url().should("contain", "index.html");
