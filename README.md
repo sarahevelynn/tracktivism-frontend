@@ -1,5 +1,9 @@
 # Tracktivism
 
+### Author **SarahEvelynn Johnson**
+### Contact **SarahEvelynnJohnson@gmail.com**
+
+
 In this app, you will find your organizational tool for the resistance. Use this app to search and log bills you care about, have their links and information in one place and categorize your activism throughout the resistance.
 
 ## Monitor Bills Tracking
