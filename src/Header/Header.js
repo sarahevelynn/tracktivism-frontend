@@ -7,7 +7,7 @@ export default function Header() {
     <Link to="/">
     <header id="header">
       <img src= {logo} className="App-logo" alt="logo" />
-      <h2 id="tagline">Your organizational Tool for the Resistance.</h2>
+      <h2 id="tagline">Your Organizational Tool for the Resistance.</h2>
     </header>
     </Link>
   );

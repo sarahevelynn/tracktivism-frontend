@@ -3,7 +3,7 @@ describe("Test the App Loads Correctly", function() {
     cy.visit("http://localhost:3000/");
     cy
       .get("#tagline")
-      .should("has.text", "Your organizational Tool for the Resistance.");
+      .should("has.text", "Your Organizational Tool for the Resistance.");
   });
   it("Load both the legislation and tracking buttons", function() {
     cy.get("#navagation div").should("have.length", 2);
