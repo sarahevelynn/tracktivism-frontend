@@ -25,6 +25,9 @@ In this app, you will find your organizational tool for the resistance. Use this
 * Add, update or remove actions
 * Get resistance points for the actions you catalog!
 
+## App Layout
+
+![Layout of the App](public/App.Layout.png)
 
 - Link to:[deployed front-end URL](https://tracktivism.herokuapp.com/)
 - Link to: [deployed API URL](https://tracktivism-data.herokuapp.com/)
