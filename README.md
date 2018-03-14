@@ -38,7 +38,7 @@ In this app, you will find your organizational tool for the resistance. Use this
 - Link to: [Code Frontend Repo](https://github.com/sarahevelynn/tracktivism-frontend) & [Code Backend Repo](https://github.com/sarahevelynn/tracktivism-backend)
 
 
-##Licensure
+## Licensure
 MIT License
 
 Copyright (c) 2018 SarahEvelynn Johnson
