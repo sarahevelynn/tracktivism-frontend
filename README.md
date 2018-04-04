@@ -6,6 +6,13 @@
 
 In this app, you will find your organizational tool for the resistance. Use this app to search and log bills you care about, have their links and information in one place and categorize your activism throughout the resistance.
 
+#### Installation instructions:
+- Run NPM install to download all of the package dependencies
+  - npm install
+- Install Cypress to run the tests
+  - npm install --save-dev cypress
+  - To run the tests run code: npx cypress open
+
 ## Monitor Bills Tracking
 * Reads from the LegiNation API to search for bills in states you care about or nationally
     * Bill ID
