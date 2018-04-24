@@ -1,8 +1,7 @@
 # Tracktivism
 
-#### Author **SarahEvelynn Johnson**
-#### Contact **SarahEvelynnJohnson@gmail.com**
-
+### Author **SarahEvelynn Johnson**
+### Contact **SarahEvelynnJohnson@gmail.com**
 
 In this app, you will find your organizational tool for the resistance. Use this app to search and log bills you care about, have their links and information in one place and categorize your activism throughout the resistance.
 
@@ -45,7 +44,7 @@ In this app, you will find your organizational tool for the resistance. Use this
 - Link to: [Code Frontend Repo](https://github.com/sarahevelynn/tracktivism-frontend) & [Code Backend Repo](https://github.com/sarahevelynn/tracktivism-backend)
 
 
-##Licensure
+## Licensure
 MIT License
 
 Copyright (c) 2018 SarahEvelynn Johnson
