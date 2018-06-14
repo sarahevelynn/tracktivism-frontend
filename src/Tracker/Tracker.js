@@ -14,23 +14,46 @@ export class Tracker extends React.Component {
 
   positionIcon = response => {
     if (response === "Support") {
-      return <img id="response-icon" src={thumbsUp} alt="Support" className="position-icon" />;
+      return (
+        <img
+          id="response-icon"
+          src={thumbsUp}
+          alt="Support"
+          className="position-icon"
+        />
+      );
     } else if (response === "Neutral") {
       return (
-        <img id="response-icon" src={thumbsNeutral} alt="Neutral" className="position-icon" />
+        <img
+          id="response-icon"
+          src={thumbsNeutral}
+          alt="Neutral"
+          className="position-icon"
+        />
       );
     } else if (response === "Oppose") {
-      return <img id="response-icon" src={thumbsDown} alt="Oppose" className="position-icon" />;
+      return (
+        <img
+          id="response-icon"
+          src={thumbsDown}
+          alt="Oppose"
+          className="position-icon"
+        />
+      );
     }
-  }
+  };
 
   actionIcon = response => {
     if (response === true) {
-      return <img id="response-icon" src={yes} alt="Yes" className="action-icon" />;
+      return (
+        <img id="response-icon" src={yes} alt="Yes" className="action-icon" />
+      );
     } else if (response === false) {
-      return <img id="response-icon" src={no} alt="No" className="action-icon" />;
+      return (
+        <img id="response-icon" src={no} alt="No" className="action-icon" />
+      );
     }
-  }
+  };
 
   createActivismTable = bill => {
     return (
@@ -46,7 +69,7 @@ export class Tracker extends React.Component {
         <td>{bill.NumberOfActions}</td>
       </tr>
     );
-  }
+  };
 
   render() {
     return (

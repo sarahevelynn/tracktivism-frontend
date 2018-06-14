@@ -13,12 +13,11 @@ export class Delete extends React.Component {
 
   openModal = () => {
     this.setState({ modalIsOpen: true });
-  }
+  };
 
   closeModal = () => {
     this.setState({ modalIsOpen: false });
-  }
-
+  };
 
   generateBills = bill => {
     return (
@@ -26,52 +25,53 @@ export class Delete extends React.Component {
         {bill.StateBillID}
       </option>
     );
-  }
+  };
 
   change = event => {
-    this.setState({id: event.target.value});
-  }
+    this.setState({ id: event.target.value });
+  };
 
   render() {
     return (
       <div>
-      <button
-        id="delete-button"
-        className="modal-open"
-        onClick={this.openModal}
-      >
-      <h2>Remove an Action</h2>
-      </button>
-      <Modal
-        isOpen={this.state.modalIsOpen}
-        onAfterOpen={this.afterOpenModal}
-        onRequestClose={this.closeModal}
-        contentLabel="DeleteModal"
-      >
-      <div id="modal">
-      <button onClick={this.closeModal} id="close-button">
-        Close
-      </button>
-        <h2 id="form-title">Remove an Action</h2>
-        <form id="delete-form" onSubmit={this.props.deleteAction}>
-          <label htmlFor="StateBillID">Find Bill:</label>
-          <select
-            id="delete-action"
-            name="StateBillID"
-            onChange={this.change} value={this.state.id}
-            onClick={this.change}
-            onKeyUp={this.change}
-            onMouseLeave={this.change}
-          >
-            <option value="" disabled selected>
-              Select something...
-            </option>
-            {this.props.data.map(this.generateBills)}
-          </select>
-          <input type="submit" id="delete-button" value="Remove Action" />
-        </form>
-        </div>
-      </Modal>
+        <button
+          id="delete-button"
+          className="modal-open"
+          onClick={this.openModal}
+        >
+          <h2>Remove an Action</h2>
+        </button>
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          contentLabel="DeleteModal"
+        >
+          <div id="modal">
+            <button onClick={this.closeModal} id="close-button">
+              Close
+            </button>
+            <h2 id="form-title">Remove an Action</h2>
+            <form id="delete-form" onSubmit={this.props.deleteAction}>
+              <label htmlFor="StateBillID">Find Bill:</label>
+              <select
+                id="delete-action"
+                name="StateBillID"
+                onChange={this.change}
+                value={this.state.id}
+                onClick={this.change}
+                onKeyUp={this.change}
+                onMouseLeave={this.change}
+              >
+                <option value="" disabled selected>
+                  Select something...
+                </option>
+                {this.props.data.map(this.generateBills)}
+              </select>
+              <input type="submit" id="delete-button" value="Remove Action" />
+            </form>
+          </div>
+        </Modal>
       </div>
     );
   }

@@ -12,12 +12,14 @@ export class ResistancePoints extends React.Component {
       tally += bill[i].NumberOfActions;
     }
     return tally;
-  }
+  };
 
   render() {
     return (
       <div id="counter">
-        <h1 id="points">Resistance Points: {this.resistanceTally(this.props.data)}</h1>
+        <h1 id="points">
+          Resistance Points: {this.resistanceTally(this.props.data)}
+        </h1>
       </div>
     );
   }

@@ -11,14 +11,13 @@ export default class BillsTracking extends React.Component {
       number = bill.length;
     }
     return number;
-  }
+  };
 
   render() {
     return (
       <div id="counter">
         <h1 id="points">
-          Bills to Keep an Eye On:{" "}
-          {this.totalBills(this.props.data)}
+          Bills to Keep an Eye On: {this.totalBills(this.props.data)}
         </h1>
       </div>
     );

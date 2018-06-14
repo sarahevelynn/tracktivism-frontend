@@ -17,7 +17,7 @@ export default class LegiTracker extends React.Component {
         </td>
       </tr>
     );
-  }
+  };
   render() {
     return (
       <div id="table-div">
